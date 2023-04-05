@@ -1,0 +1,65 @@
+conan create .
+
+======== Exporting recipe to the cache ========
+libc/0.1: Exporting package recipe: /home/user/dev/conan2-missing-override-bug/libc/conanfile.py
+libc/0.1: Copied 1 '.py' file: conanfile.py
+libc/0.1: Exported to cache folder: /home/user/.conan2/p/libc131a61a3214d9/e
+libc/0.1: Exported: libc/0.1#423a07067eef81c2ee8b320fd2cb100c (2023-04-05 19:50:45 UTC)
+
+======== Input profiles ========
+Profile host:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=10
+os=Linux
+[options]
+opencv*:with_ffmpeg=False
+opencv*:with_gtk=False
+[conf]
+tools.cmake.cmake_layout:build_folder_vars=['settings.arch']
+
+Profile build:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=10
+os=Linux
+[options]
+opencv*:with_ffmpeg=False
+opencv*:with_gtk=False
+[conf]
+tools.cmake.cmake_layout:build_folder_vars=['settings.arch']
+
+
+======== Computing dependency graph ========
+Traceback (most recent call last):
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conan/cli/cli.py", line 272, in main
+    cli.run(args)
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conan/cli/cli.py", line 171, in run
+    command.run(self._conan_api, self._commands[command_argument].parser, args[0][1:])
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conan/cli/command.py", line 157, in run
+    info = self._method(conan_api, parser, *args)
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conan/cli/commands/create.py", line 69, in create
+    deps_graph = conan_api.graph.load_graph_requires(requires, tool_requires,
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conan/api/subapi/graph.py", line 123, in load_graph_requires
+    deps_graph = self.load_graph(root_node, profile_host=profile_host,
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conan/api/subapi/graph.py", line 172, in load_graph
+    deps_graph = builder.load_graph(root_node, profile_host, profile_build, lockfile)
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conans/client/graph/graph_builder.py", line 53, in load_graph
+    new_node = self._expand_require(require, node, dep_graph, profile_host,
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conans/client/graph/graph_builder.py", line 100, in _expand_require
+    node.propagate_closing_loop(require, prev_node)
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conans/client/graph/graph.py", line 82, in propagate_closing_loop
+    prev_node.propagate_downstream(transitive.require, transitive.node, self)
+  File "/home/user/miniconda3/envs/conan2/lib/python3.10/site-packages/conans/client/graph/graph.py", line 86, in propagate_downstream
+    assert node is not None
+AssertionError
+
+ERROR:
