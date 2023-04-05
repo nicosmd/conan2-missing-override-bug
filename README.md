@@ -5,7 +5,7 @@ required as a real dependency in the result graph.
 
 The follwing diagram illustrates the dependency graph:
 
-![image](www.plantuml.com/plantuml/png/SoWkIImgAStDuOhEoKnAZbNGrRLJ036JOj554Y4YIIWY44f1JmyeKWLanrefv9Ub5XLbfgHoEQJcfG1D1W00)
+![graph](graph.png)
 
 # Reproduction
 
